@@ -14,13 +14,14 @@ import {
   AuditLog,
   DashboardStats
 } from '../models/pms.models';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PmsService {
   private http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:8000/api';
+  private readonly API_URL = environment.apiUrl;
 
   // --- RACK DE OCUPACIÓN ---
   getRack(startDate?: string, days: number = 14): Observable<RackResponse> {

@@ -148,4 +148,37 @@ SIMPLE_JWT = {
 # CORS Configuration
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+# CSRF Trusted Origins for Render & Frontends
+CSRF_TRUSTED_ORIGINS = [
+    'https://constantinohostel-backend.onrender.com',
+    'http://localhost:4200',
+    'http://localhost:3000',
+    'http://127.0.0.1:4200',
+    'https://*.onrender.com',
+    'https://*.vercel.app',
+    'https://*.netlify.app',
+]
+
+# Reverse Proxy SSL Header for Render
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
