@@ -18,6 +18,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.sqlite3-journal
+staticfiles/
+BackEnd/staticfiles/
 
 # IDEs & OS
 .vscode/
