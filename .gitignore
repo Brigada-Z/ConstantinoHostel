@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+FrontEnd/node_modules/
+BackEnd/venv/
+venv/
+env/
+.env
+
+# Angular build outputs
+FrontEnd/dist/
+dist/
+.angular/
+FrontEnd/.angular/
+.sass-cache/
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3-journal
+
+# IDEs & OS
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+*.log
