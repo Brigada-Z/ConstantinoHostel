@@ -107,73 +107,93 @@ export interface CatalogItem {
           </div>
         </div>
 
-        <!-- Drawer Menú Móvil para Pantallas Reducidas -->
+        <!-- Menú Móvil Fullscreen para Pantallas Reducidas -->
         @if (mobileMenuOpen()) {
-          <div class="mobile-drawer-backdrop" (click)="closeMobileMenu()">
-            <div class="mobile-drawer-menu" (click)="$event.stopPropagation()">
-              <div class="mobile-drawer-header">
-                <div class="drawer-brand">
-                  <img src="assets/logo.png" alt="Hostel Constantino" class="drawer-logo" />
-                  <span class="drawer-title">HOSTEL CONSTANTINO</span>
+          <div class="mobile-fullscreen-overlay">
+            <div class="fullscreen-nav-header">
+              <a routerLink="/" class="fullscreen-brand" (click)="closeMobileMenu()">
+                <img src="assets/logo.png" alt="Hostel Constantino" class="fullscreen-logo" />
+                <div class="fullscreen-brand-text">
+                  <span class="fs-title">CONSTANTINO</span>
+                  <span class="fs-subtitle">HOSTEL BOUTIQUE • 2021</span>
                 </div>
-                <button class="drawer-close-btn" (click)="closeMobileMenu()" aria-label="Cerrar menú">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
-                </button>
-              </div>
+              </a>
+              <button class="fullscreen-close-btn" (click)="closeMobileMenu()" aria-label="Cerrar menú">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
 
-              <nav class="mobile-drawer-links">
-                <a href="#hero" class="mobile-drawer-link" (click)="closeMobileMenu()">
-                  <span>Inicio</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div class="fullscreen-nav-body">
+              <nav class="fullscreen-links">
+                <a href="#hero" class="fullscreen-link" (click)="closeMobileMenu()">
+                  <span class="fs-num">01</span>
+                  <span class="fs-text">Inicio</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>
                 </a>
-                <a href="#catalogo" class="mobile-drawer-link" (click)="closeMobileMenu()">
-                  <span>Habitaciones (10 Unidades)</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="#catalogo" class="fullscreen-link" (click)="closeMobileMenu()">
+                  <span class="fs-num">02</span>
+                  <span class="fs-text">Habitaciones & Plazas</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>
                 </a>
-                <a routerLink="/catalogo" class="mobile-drawer-link highlight" (click)="closeMobileMenu()">
-                  <span>Catálogo Completo Oficial</span>
-                  <span class="drawer-badge">Ver</span>
+                <a routerLink="/catalogo" class="fullscreen-link highlight" (click)="closeMobileMenu()">
+                  <span class="fs-num">03</span>
+                  <span class="fs-text">Catálogo Completo</span>
+                  <span class="fs-badge">Oficial</span>
                 </a>
-                <a href="#experiencia" class="mobile-drawer-link" (click)="closeMobileMenu()">
-                  <span>Experiencia Boutique</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="#experiencia" class="fullscreen-link" (click)="closeMobileMenu()">
+                  <span class="fs-num">04</span>
+                  <span class="fs-text">Experiencia Boutique</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>
                 </a>
-                <a href="#servicios" class="mobile-drawer-link" (click)="closeMobileMenu()">
-                  <span>Servicios Incluidos</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="#servicios" class="fullscreen-link" (click)="closeMobileMenu()">
+                  <span class="fs-num">05</span>
+                  <span class="fs-text">Servicios & Comodidades</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>
                 </a>
-                <a href="#contacto" class="mobile-drawer-link" (click)="closeMobileMenu()">
-                  <span>Ubicación & Contacto</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <a href="#contacto" class="fullscreen-link" (click)="closeMobileMenu()">
+                  <span class="fs-num">06</span>
+                  <span class="fs-text">Ubicación & Contacto</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="9 18 15 12 9 6"/>
                   </svg>
                 </a>
               </nav>
 
-              <div class="mobile-drawer-actions">
-                <a routerLink="/dashboard" class="mobile-drawer-dashboard" (click)="closeMobileMenu()">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="3" width="7" height="9" rx="1"/>
-                    <rect x="14" y="3" width="7" height="5" rx="1"/>
-                    <rect x="14" y="12" width="7" height="9" rx="1"/>
-                    <rect x="3" y="16" width="7" height="5" rx="1"/>
-                  </svg>
+              <div class="fullscreen-actions">
+                <a routerLink="/dashboard" class="fullscreen-dashboard-btn" (click)="closeMobileMenu()">
+                  <div class="fs-dash-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="7" height="9" rx="1"/>
+                      <rect x="14" y="3" width="7" height="5" rx="1"/>
+                      <rect x="14" y="12" width="7" height="9" rx="1"/>
+                      <rect x="3" y="16" width="7" height="5" rx="1"/>
+                    </svg>
+                  </div>
                   <span>Ingresar al Dashboard PMS</span>
+                  <span class="status-indicator"></span>
                 </a>
-                <button (click)="openQuickBookingModal(); closeMobileMenu()" class="btn btn-primary btn-full mt-2">
+
+                <button (click)="openQuickBookingModal(); closeMobileMenu()" class="btn btn-gold btn-lg btn-full fs-book-btn">
                   <span>Reservar Acomodación Directa</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
                 </button>
+              </div>
+
+              <div class="fullscreen-footer">
+                <span>San Juan, Argentina • Hostel Boutique</span>
               </div>
             </div>
           </div>
@@ -892,132 +912,237 @@ export interface CatalogItem {
       color: var(--gold-accent);
     }
 
-    /* Mobile Drawer Menu */
-    .mobile-drawer-backdrop {
+    /* Mobile Fullscreen Menu */
+    .mobile-fullscreen-overlay {
       position: fixed;
       inset: 0;
-      top: 62px;
-      background: rgba(4, 4, 6, 0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      z-index: 199;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: linear-gradient(180deg, #07070a 0%, #0d0e13 100%);
+      z-index: 9999;
       display: flex;
       flex-direction: column;
-      animation: fadeIn 0.2s ease-out;
-    }
-
-    .mobile-drawer-menu {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border-medium);
-      box-shadow: var(--shadow-xl);
-      padding: 1.25rem 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      max-height: 80vh;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      animation: fsMenuFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .mobile-drawer-header {
+    @keyframes fsMenuFade {
+      from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.99);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .fullscreen-nav-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 0.75rem;
+      padding: 1.25rem 1.5rem;
       border-bottom: 1px solid var(--border-subtle);
+      background: rgba(10, 11, 14, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .drawer-brand {
+    .fullscreen-brand {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      text-decoration: none;
     }
 
-    .drawer-logo {
-      width: 24px;
-      height: 24px;
+    .fullscreen-logo {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      object-fit: cover;
     }
 
-    .drawer-title {
+    .fullscreen-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fs-title {
       font-family: var(--font-heading);
-      font-size: 0.85rem;
+      font-size: 1.05rem;
       color: var(--gold-accent);
-      letter-spacing: 0.06em;
-      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-weight: 700;
     }
 
-    .drawer-close-btn {
-      background: transparent;
-      border: none;
+    .fs-subtitle {
+      font-size: 0.62rem;
       color: var(--text-muted);
+      letter-spacing: 0.12em;
+    }
+
+    .fullscreen-close-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-medium);
+      color: var(--text-main);
       cursor: pointer;
-      padding: 0.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all var(--transition-fast);
     }
 
-    .mobile-drawer-links {
+    .fullscreen-close-btn:hover {
+      background: rgba(212, 191, 142, 0.15);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+      transform: rotate(90deg);
+    }
+
+    .fullscreen-nav-body {
+      flex: 1;
+      padding: 1.75rem 1.5rem 2.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
     }
 
-    .mobile-drawer-link {
+    .fullscreen-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .fullscreen-link {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0.65rem 0.85rem;
+      gap: 1rem;
+      padding: 0.95rem 1.15rem;
       border-radius: var(--radius-sm);
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      text-decoration: none;
       color: var(--text-main);
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border-subtle);
       transition: all var(--transition-fast);
+      position: relative;
     }
 
-    .mobile-drawer-link:hover,
-    .mobile-drawer-link.highlight {
+    .fullscreen-link .fs-num {
+      font-family: var(--font-mono, monospace);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .fullscreen-link .fs-text {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .fullscreen-link svg {
+      color: var(--text-muted);
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .fullscreen-link:hover,
+    .fullscreen-link.highlight {
       background: rgba(212, 191, 142, 0.08);
       border-color: var(--gold-border);
       color: var(--gold-accent);
+      transform: translateX(4px);
     }
 
-    .drawer-badge {
+    .fullscreen-link:hover .fs-num,
+    .fullscreen-link.highlight .fs-num {
+      color: var(--gold-accent);
+    }
+
+    .fullscreen-link:hover svg {
+      color: var(--gold-accent);
+      transform: translateX(3px);
+    }
+
+    .fs-badge {
       font-size: 0.65rem;
       background: var(--gold-accent);
       color: #000;
-      padding: 0.15rem 0.45rem;
+      padding: 0.2rem 0.5rem;
       border-radius: var(--radius-xs);
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .mobile-drawer-actions {
+    .fullscreen-actions {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border-subtle);
+      gap: 0.75rem;
     }
 
-    .mobile-drawer-dashboard {
+    .fullscreen-dashboard-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-sm);
+      background: rgba(212, 191, 142, 0.08);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-accent);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .fullscreen-dashboard-btn:hover {
+      background: rgba(212, 191, 142, 0.16);
+      box-shadow: 0 0 20px rgba(212, 191, 142, 0.15);
+    }
+
+    .fs-dash-icon {
+      display: flex;
+      align-items: center;
+      color: var(--gold-accent);
+    }
+
+    .fs-book-btn {
+      padding: 0.95rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.65rem 1rem;
-      border-radius: var(--radius-sm);
-      background: rgba(212, 191, 142, 0.1);
-      border: 1px solid var(--gold-border);
-      color: var(--gold-accent);
-      font-family: var(--font-heading);
-      font-size: 0.82rem;
-      text-transform: uppercase;
+      font-size: 0.92rem;
+    }
+
+    .fullscreen-footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
       letter-spacing: 0.05em;
-      font-weight: 600;
+      padding-top: 0.5rem;
     }
 
     /* Hero Section */
@@ -1994,9 +2119,6 @@ export interface CatalogItem {
       .mobile-toggle-btn {
         padding: 0.35rem 0.45rem;
       }
-      .mobile-drawer-backdrop {
-        top: 52px;
-      }
       .hero-section {
         padding: 3.5rem 0 2rem;
         min-height: auto;
@@ -2116,11 +2238,18 @@ export class LandingComponent {
   activeModalRoom = signal<CatalogItem | null>(null);
 
   toggleMobileMenu(): void {
-    this.mobileMenuOpen.update(v => !v);
+    const next = !this.mobileMenuOpen();
+    this.mobileMenuOpen.set(next);
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = next ? 'hidden' : '';
+    }
   }
 
   closeMobileMenu(): void {
     this.mobileMenuOpen.set(false);
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = '';
+    }
   }
 
   searchCheckIn: string = '';
