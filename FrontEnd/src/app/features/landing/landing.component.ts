@@ -83,8 +83,101 @@ export interface CatalogItem {
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
+
+            <!-- Botón de Menú Móvil / Toggle -->
+            <button
+              class="mobile-toggle-btn"
+              (click)="toggleMobileMenu()"
+              [attr.aria-expanded]="mobileMenuOpen()"
+              aria-label="Menú de navegación"
+            >
+              @if (!mobileMenuOpen()) {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="3" y1="6" x2="21" y2="6"/>
+                  <line x1="3" y1="12" x2="21" y2="12"/>
+                  <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+              } @else {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              }
+            </button>
           </div>
         </div>
+
+        <!-- Drawer Menú Móvil para Pantallas Reducidas -->
+        @if (mobileMenuOpen()) {
+          <div class="mobile-drawer-backdrop" (click)="closeMobileMenu()">
+            <div class="mobile-drawer-menu" (click)="$event.stopPropagation()">
+              <div class="mobile-drawer-header">
+                <div class="drawer-brand">
+                  <img src="assets/logo.png" alt="Hostel Constantino" class="drawer-logo" />
+                  <span class="drawer-title">HOSTEL CONSTANTINO</span>
+                </div>
+                <button class="drawer-close-btn" (click)="closeMobileMenu()" aria-label="Cerrar menú">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+
+              <nav class="mobile-drawer-links">
+                <a href="#hero" class="mobile-drawer-link" (click)="closeMobileMenu()">
+                  <span>Inicio</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+                <a href="#catalogo" class="mobile-drawer-link" (click)="closeMobileMenu()">
+                  <span>Habitaciones (10 Unidades)</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+                <a routerLink="/catalogo" class="mobile-drawer-link highlight" (click)="closeMobileMenu()">
+                  <span>Catálogo Completo Oficial</span>
+                  <span class="drawer-badge">Ver</span>
+                </a>
+                <a href="#experiencia" class="mobile-drawer-link" (click)="closeMobileMenu()">
+                  <span>Experiencia Boutique</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+                <a href="#servicios" class="mobile-drawer-link" (click)="closeMobileMenu()">
+                  <span>Servicios Incluidos</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+                <a href="#contacto" class="mobile-drawer-link" (click)="closeMobileMenu()">
+                  <span>Ubicación & Contacto</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </a>
+              </nav>
+
+              <div class="mobile-drawer-actions">
+                <a routerLink="/dashboard" class="mobile-drawer-dashboard" (click)="closeMobileMenu()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="9" rx="1"/>
+                    <rect x="14" y="3" width="7" height="5" rx="1"/>
+                    <rect x="14" y="12" width="7" height="9" rx="1"/>
+                    <rect x="3" y="16" width="7" height="5" rx="1"/>
+                  </svg>
+                  <span>Ingresar al Dashboard PMS</span>
+                </a>
+                <button (click)="openQuickBookingModal(); closeMobileMenu()" class="btn btn-primary btn-full mt-2">
+                  <span>Reservar Acomodación Directa</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
       </header>
 
       <!-- =================================================================
@@ -778,6 +871,153 @@ export interface CatalogItem {
 
     .cta-book {
       display: inline-flex;
+    }
+
+    .mobile-toggle-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-medium);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .mobile-toggle-btn:hover {
+      background: rgba(212, 191, 142, 0.12);
+      border-color: var(--gold-accent);
+      color: var(--gold-accent);
+    }
+
+    /* Mobile Drawer Menu */
+    .mobile-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      top: 62px;
+      background: rgba(4, 4, 6, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 199;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .mobile-drawer-menu {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-medium);
+      box-shadow: var(--shadow-xl);
+      padding: 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .drawer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .drawer-logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    .drawer-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--gold-accent);
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .drawer-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-drawer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .mobile-drawer-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast);
+    }
+
+    .mobile-drawer-link:hover,
+    .mobile-drawer-link.highlight {
+      background: rgba(212, 191, 142, 0.08);
+      border-color: var(--gold-border);
+      color: var(--gold-accent);
+    }
+
+    .drawer-badge {
+      font-size: 0.65rem;
+      background: var(--gold-accent);
+      color: #000;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-xs);
+      font-weight: 700;
+    }
+
+    .mobile-drawer-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .mobile-drawer-dashboard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(212, 191, 142, 0.1);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-accent);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
     }
 
     /* Hero Section */
@@ -1626,14 +1866,243 @@ export interface CatalogItem {
       .booking-query-bar { flex-direction: column; align-items: stretch; }
       .query-divider { display: none; }
       .nav-links { display: none; }
+      .mobile-toggle-btn { display: inline-flex; }
     }
 
     @media (max-width: 640px) {
-      .hero-title { font-size: 2.2rem; }
-      .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+      .hero-title { font-size: 2.1rem; }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem 0.75rem;
+        width: 100%;
+      }
       .stat-sep { display: none; }
       .rooms-grid { grid-template-columns: 1fr; }
       .modal-amenities { grid-template-columns: 1fr; }
+      .catalog-filters {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .filter-pill {
+        width: 100%;
+        text-align: center;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 0.75rem;
+        gap: 0.5rem;
+      }
+      .logo-wrapper {
+        width: 36px;
+        height: 36px;
+      }
+      .brand-title {
+        font-size: 1.1rem;
+      }
+      .brand-subtitle {
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+      }
+      .dashboard-text {
+        display: none;
+      }
+      .dashboard-btn {
+        padding: 0.4rem 0.5rem;
+      }
+      .cta-book {
+        padding: 0.4rem 0.65rem;
+        font-size: 0.75rem;
+      }
+      .mobile-toggle-btn {
+        padding: 0.4rem 0.5rem;
+      }
+      .hero-section {
+        padding: 4.5rem 0 3rem;
+      }
+      .hero-title {
+        font-size: 1.8rem;
+      }
+      .contact-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .contact-actions .btn {
+        width: 100%;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .footer-left {
+        align-items: center;
+      }
+      .footer-brand {
+        justify-content: center;
+      }
+      .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .landing-navbar {
+        padding: 0.5rem 0;
+      }
+      .nav-container {
+        padding: 0 0.5rem;
+        gap: 0.35rem;
+      }
+      .nav-brand {
+        gap: 0.45rem;
+      }
+      .logo-wrapper {
+        width: 32px;
+        height: 32px;
+      }
+      .brand-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+      }
+      .brand-subtitle {
+        display: none;
+      }
+      .nav-actions {
+        gap: 0.3rem;
+      }
+      .dashboard-btn {
+        padding: 0.35rem 0.45rem;
+      }
+      .cta-book {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        gap: 0.25rem;
+      }
+      .cta-book svg {
+        display: none;
+      }
+      .mobile-toggle-btn {
+        padding: 0.35rem 0.45rem;
+      }
+      .mobile-drawer-backdrop {
+        top: 52px;
+      }
+      .hero-section {
+        padding: 3.5rem 0 2rem;
+        min-height: auto;
+      }
+      .hero-title {
+        font-size: 1.55rem !important;
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+        word-break: break-word;
+      }
+      .hero-tag {
+        margin-bottom: 1rem;
+        gap: 0.5rem;
+      }
+      .tag-line {
+        width: 16px;
+      }
+      .tag-text {
+        font-size: 0.65rem;
+        letter-spacing: 0.06em;
+      }
+      .hero-description {
+        font-size: 0.82rem;
+        padding: 0 0.25rem;
+        margin-bottom: 1.75rem;
+      }
+      .booking-query-bar {
+        padding: 1rem 0.75rem;
+        gap: 0.85rem;
+      }
+      .query-label {
+        font-size: 0.75rem;
+      }
+      .query-input, .query-select {
+        padding: 0.55rem 0.7rem;
+        font-size: 0.82rem;
+      }
+      .query-btn {
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+        width: 100%;
+      }
+      .hero-stats {
+        margin-top: 2rem;
+      }
+      .stat-number {
+        font-size: 1.5rem;
+      }
+      .stat-label {
+        font-size: 0.7rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .section-description {
+        font-size: 0.82rem;
+        padding: 0;
+      }
+      .catalog-filters {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+      .filter-pill {
+        font-size: 0.72rem;
+        padding: 0.45rem 0.5rem;
+      }
+      .room-content {
+        padding: 1rem 0.85rem;
+      }
+      .room-title {
+        font-size: 1.15rem;
+      }
+      .room-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .room-actions .btn {
+        width: 100%;
+      }
+      .contact-card {
+        padding: 1.25rem 0.75rem;
+      }
+      .contact-item {
+        gap: 0.65rem;
+      }
+      .contact-item strong {
+        font-size: 0.82rem;
+      }
+      .contact-item span {
+        font-size: 0.78rem;
+      }
+      .visual-quote p {
+        font-size: 0.85rem;
+      }
+      .f-brand-name {
+        font-size: 1rem;
+      }
+      .f-brand-sub {
+        font-size: 0.65rem;
+      }
+      .footer-copy {
+        font-size: 0.72rem;
+      }
+      .room-modal {
+        padding: 0;
+      }
     }
   `]
 })
@@ -1641,9 +2110,18 @@ export class LandingComponent {
   private router = inject(Router);
   authService = inject(AuthService);
 
+  mobileMenuOpen = signal(false);
   isScrolled = signal(false);
   selectedCategory = signal<'ALL' | 'DOUBLE' | 'TRIPLE' | 'SHARED'>('ALL');
   activeModalRoom = signal<CatalogItem | null>(null);
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update(v => !v);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
 
   searchCheckIn: string = '';
   searchCheckOut: string = '';

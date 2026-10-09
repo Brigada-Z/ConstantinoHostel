@@ -99,7 +99,7 @@ import { AuthService } from '../../core/services/auth.service';
             <span class="web-text">Ver Web</span>
           </a>
 
-          <div class="user-pill">
+          <div class="user-pill" [title]="(user()?.first_name || user()?.username || 'Usuario') + ' (' + userRoleLabel() + ')'">
             <div class="user-avatar">{{ userInitial() }}</div>
             <div class="user-meta">
               <span class="user-name">{{ user()?.first_name || user()?.username }}</span>
@@ -346,17 +346,96 @@ import { AuthService } from '../../core/services/auth.service';
     @media (max-width: 960px) {
       .app-header {
         flex-wrap: wrap;
-        padding: 0.75rem 1rem;
+        padding: 0.65rem 1rem;
+        gap: 0.75rem;
       }
       .header-nav {
         order: 3;
         width: 100%;
         overflow-x: auto;
-        padding-top: 0.6rem;
+        padding-top: 0.5rem;
         border-top: 1px solid var(--border-subtle);
+        -webkit-overflow-scrolling: touch;
       }
       .logout-text, .web-text {
         display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-header {
+        padding: 0.5rem 0.65rem;
+        gap: 0.5rem;
+      }
+      .hotel-logo {
+        gap: 0.5rem;
+      }
+      .logo-circle {
+        width: 32px;
+        height: 32px;
+      }
+      .brand-name {
+        font-size: 0.95rem;
+      }
+      .header-right {
+        gap: 0.4rem;
+      }
+      .btn-public-web, .btn-logout {
+        padding: 0.35rem 0.5rem;
+      }
+      .user-pill {
+        padding: 0.15rem;
+        border-radius: var(--radius-full);
+      }
+      .user-meta {
+        display: none;
+      }
+      .user-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 0.78rem;
+      }
+      .app-main {
+        padding: 1.25rem 0.75rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .app-header {
+        padding: 0.45rem 0.5rem;
+        gap: 0.35rem;
+      }
+      .brand-tag {
+        display: none;
+      }
+      .brand-name {
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+      }
+      .logo-circle {
+        width: 28px;
+        height: 28px;
+      }
+      .header-right {
+        gap: 0.3rem;
+      }
+      .header-nav {
+        gap: 0.25rem;
+        padding-top: 0.4rem;
+        padding-bottom: 0.1rem;
+        scrollbar-width: none;
+      }
+      .header-nav::-webkit-scrollbar {
+        display: none;
+      }
+      .nav-item {
+        padding: 0.35rem 0.55rem;
+        font-size: 0.72rem;
+        gap: 0.3rem;
+        flex-shrink: 0;
+      }
+      .app-main {
+        padding: 0.85rem 0.5rem;
       }
     }
   `]

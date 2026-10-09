@@ -293,6 +293,12 @@ button, input, select, textarea {
   .md-col-1 { grid-template-columns: 1fr !important; }
 }
 
+@media (max-width: 640px) {
+  .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* ==========================================================================
    Buttons (Minimalist & Luxury Dark)
    ========================================================================== */
@@ -663,3 +669,163 @@ button, input, select, textarea {
   color: currentColor;
   stroke: currentColor;
 }
+
+/* ==========================================================================
+   Responsive Adaptations for Small Screens (< 480px and < 400px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .container,
+  .container-narrow {
+    padding: 1rem 0.75rem;
+  }
+
+  .modal-overlay {
+    padding: 0.65rem;
+  }
+
+  .modal-content {
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header {
+    padding: 1rem 1rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .modal-footer {
+    padding: 0.85rem 1rem;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+  }
+
+  .card-header {
+    padding: 0.95rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .container,
+  .container-narrow {
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* Typography adaptations for narrow widths */
+  h1, .page-title, .hero-title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    word-break: break-word;
+  }
+
+  h2, .section-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  h3, .card-title {
+    font-size: 1.1rem;
+  }
+
+  /* Form & Interactive inputs */
+  .form-group {
+    margin-bottom: 0.95rem;
+  }
+
+  .form-label {
+    font-size: 0.75rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-control {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .btn {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-sm {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.72rem;
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.15rem;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+
+  /* Cards and Surfaces */
+  .card-header {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .card-body {
+    padding: 0.85rem;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    padding: 0.4rem;
+  }
+
+  .modal-content {
+    border-radius: var(--radius-sm);
+  }
+
+  .modal-header {
+    padding: 0.85rem 0.85rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+  }
+
+  .modal-body {
+    padding: 0.85rem;
+  }
+
+  .modal-footer {
+    padding: 0.75rem 0.85rem;
+  }
+
+  /* Tables */
+  .table th,
+  .table td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
